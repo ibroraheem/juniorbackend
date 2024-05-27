@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departure Times</title>
+    <script>
+        async function fetchDepartureTimes() {
+            const address = document.getElementById('address').value
+            const response = await fetch(`/departure-times?address=${address}`)
+            const data = await response.json()
+            document.getElementById('results').innerHTML = JSON.stringify(data, null, 2)
+        }
+    </script>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        h1{
+            text-align: center;
+            color: #333;
+            margin-top: 50px;
+        }
+        input[type="text"]{
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            margin: 20px auto;
+            display: block;
+        }
+        button{
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 0 auto;
+        }
+        pre{
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow:  0 0 10px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            display: block;
+            width: 70%;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Departure Times</h1>
+    <input type="text" placeholder="Enter address or zip code" id="address">
+    <button onclick="fetchDepartureTimes()">Get Departure Times</button>
+    <pre id="results"></pre>
+</body>
+
+</html>

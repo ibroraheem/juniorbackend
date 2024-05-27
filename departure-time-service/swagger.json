@@ -1,0 +1,70 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API for real-time public transportation departure times",
+        "version": "1.0.0",
+        "title": "Departure Times API"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "departure-times",
+            "description": "Operations about departure times"
+        }
+    ],
+    "paths": {
+        "/departure-times": {
+            "get": {
+                "tags": [
+                    "departure-times"
+                ],
+                "summary": "Get departure times",
+                "parameters": [
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Latitude of the location"
+                    },
+                    {
+                        "name": "lon",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Longitude of the location"
+                    },
+                    {
+                        "name": "address",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Address to geolocate"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/DepartureTime"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "DepartureTime": {
+            "type": "object",
+            "properties": {
+                "line": {
+                    "type": "string"
+                },
+                "departure": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
